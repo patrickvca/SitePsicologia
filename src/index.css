@@ -1,0 +1,87 @@
+@import 'tailwindcss';
+@import '@fontsource/young-serif/latin-400.css';
+@import '@fontsource/ibm-plex-mono/latin-400.css';
+@import '@fontsource-variable/figtree/wght.css';
+
+@theme {
+  --font-display: 'Young Serif', Georgia, serif;
+  --font-sans: 'Figtree Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Courier New', monospace;
+  --color-page: #f7f1e7;
+  --color-paper: #e9dfcf;
+  --color-sage: #dbe3d1;
+  --color-moss: #586c53;
+  --color-moss-light: #b3c5a6;
+  --color-coffee: #35261d;
+  --color-muted: #6f6158;
+  --color-clay: #dc9c7b;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-page);
+    color: var(--color-coffee);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-moss);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* As seções seguem a mesma margem e a mesma largura máxima do hero */
+@utility wrap {
+  --gutter: 16px;
+  width: min(100% - 2 * var(--gutter), 1440px);
+  margin-inline: auto;
+
+  @media (min-width: 640px) {
+    --gutter: 24px;
+  }
+
+  @media (min-width: 1024px) {
+    --gutter: 40px;
+  }
+}
+
+@utility titulo {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 1.2rem + 3vw, 3.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
+/* Perguntas: o sinal de mais gira e vira fechar */
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary svg {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq[open] summary svg {
+  transform: rotate(45deg);
+}
